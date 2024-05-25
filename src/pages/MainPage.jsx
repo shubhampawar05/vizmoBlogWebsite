@@ -3,6 +3,7 @@ import Header from '../components/header/Header'
 import ContentWrapper from '../components/ContentWrapper/ContentWrapper'
 import SingleCard from '../components/SingleCard/SingleCard'
 
+
 // import Data from './../assets/SampleData.json'
 
 
@@ -15,7 +16,7 @@ const MainPage = () => {
     <div className=' bg-slate-100'>
       <Header/>
       <ContentWrapper>
-        <p>Main contnet</p>
+        <p>main page</p>
        <div className=' grid grid-cols-4 gap-3 place-items-center px-28 py-4'>
        {localData.length > 0 ? (
             localData.map((item, idx) => (
