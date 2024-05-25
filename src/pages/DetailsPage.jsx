@@ -20,9 +20,15 @@ const DetailsPage = () => {
     <div>
       <Header/>
       <ContentWrapper>
-        <h1 className=' text-3xl font-bold '>{filteredData[0].title}</h1>
-        <img src={filteredData[0].imgUrl} alt="" />
-        <div dangerouslySetInnerHTML={{__html: filteredData[0].value}} />
+
+        <div className='mt-12 max-w-4xl mx-auto pb-12 '>
+          <h1 className=' text-3xl font-bold mb-4 '>{filteredData[0].title}</h1>
+          <div className=' text-center mx-auto mb-4'>
+          <img src={filteredData[0].imgUrl} alt="" width={"500px"}/>
+          </div>
+          <div dangerouslySetInnerHTML={{__html: filteredData[0].value}} />
+        </div>
+        
       </ContentWrapper>
     </div>
   )

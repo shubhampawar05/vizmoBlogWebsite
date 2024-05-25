@@ -6,12 +6,12 @@ import Logo from './../../assets/vizmo.svg'
 const Header = () => {
   return (
 
-    <div className='bg-slate-100 ' >
+    <div className=' shadow-xl' >
         <ContentWrapper>
-            <div className=' flex justify-between px-4 py-4 border-b bg-white shadow-b  '>
+            <div className=' flex justify-between px-4 py-4  border-2  '>
                <Link to={'/'}>
-               <div className=' p-2'> 
-                   <img src={Logo} alt="" />
+               <div className=' p-2 flex items-center'> 
+                   <img src={Logo} alt="" /><span className=' inline-block text-2xl font-bold ml-[2px]'>Blog</span>
                 </div>
                </Link>
                 <Link to={'/AddPost'}>

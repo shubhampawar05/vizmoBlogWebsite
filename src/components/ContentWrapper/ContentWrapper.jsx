@@ -2,9 +2,9 @@ import React from 'react'
 
 const ContentWrapper = ({children}) => {
   return (
-    <div className=' bg-slate-100'>
+    <div className=' '>
 
-    <div className=' max-w-screen-xl mx-auto bg-white'>
+    <div className=' max-w-screen-xl mx-auto '>
         {children}
     </div>
     </div>

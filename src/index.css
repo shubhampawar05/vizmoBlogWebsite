@@ -2,7 +2,3 @@
 @tailwind components;
 @tailwind utilities;
 
-.ql-snow .ql-tooltip{
-    left: 0px;
-    top: -51px;
-}

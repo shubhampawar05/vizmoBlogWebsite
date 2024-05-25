@@ -18,7 +18,7 @@ const EditorPage = () => {
   const formatDate = (date) => {
     const d = new Date(date);
     let day = d.getDate();
-    let month = d.getMonth() + 1; // Months are zero based
+    let month = d.getMonth() + 1; 
     const year = d.getFullYear();
   
     // Add leading zeros if day or month is less than 10
@@ -28,7 +28,6 @@ const EditorPage = () => {
     if (month < 10) {
       month = '0' + month;
     }
-  
     return `${day}/${month}/${year}`;
   };
 
@@ -43,7 +42,7 @@ const EditorPage = () => {
 
   
   const handleAdd = () => {
-    console.log("inside handle add");
+    // console.log("inside handle add");
     const newData = {
       id: uuidv4(),
       value,
@@ -56,20 +55,21 @@ const EditorPage = () => {
     const updatedPosts = [...post, newData];
     setPost(updatedPosts);
     localStorage.setItem("localData", JSON.stringify(updatedPosts));
+
     setValue('');
     setTitle("");
     setCategory("");
     setImgBanner("");
     setAuthorName("");
   };
-  console.log(post);
+  // console.log(post);
 
-  useEffect(() => {
-    const savedPosts = localStorage.getItem("localData");
-    if (savedPosts) {
-      setPost(JSON.parse(savedPosts));
-    }
-  }, []);
+  // useEffect(() => {
+  //   const savedPosts = localStorage.getItem("localData");
+  //   if (savedPosts) {
+  //     setPost(JSON.parse(savedPosts));
+  //   }
+  // }, []);
 
   useEffect(() => {
     localStorage.setItem("localData", JSON.stringify(post));
@@ -79,28 +79,36 @@ const EditorPage = () => {
     <div>
       <Header />
       <ContentWrapper>
-        <div className=" w-full px-12 py-4 relative">
+        <div className=" max-w-3xl mx-auto min-h-[50vh] mt-12 relative">
           <div>
-            <div>
-              <div>
-                <label htmlFor="title"> Blog Title :- </label>
+            {/* inputs for blog */}
+            <div className=" flex justify-between items-center my-4">
+              {/* Title of your blog */}
+              <div className="">
+                <label htmlFor="title" className=" text-xl font-semibold"> Blog Title :- </label>
                 <input
                 value={title}
                   onChange={(e) => setTitle(e.target.value)}
                   type="text"
                   id="title"
                   placeholder="Blog Title"
+                  className=" border-b outline-none rounded-md p-1 text-xl font-semibold border-black"
                 />
               </div>
+              {/* category  */}
               <div>
-                <label htmlFor="category"> Choose Your Category </label>
+                <label htmlFor="category" className=" text-xl font-semibold"> Category </label>
                 <select
                   name=""
                   value={category}
                   id=""
                   onChange={(e) => setCategory(e.target.value)}
+                  className=" border-b outline-none rounded-md p-1 text-xl  border-black "
                 >
-                  <option value="Space">Space</option>
+                  <option value="">
+                    Select Category
+                  </option>
+                  <option value="Space" className=" ">Space</option>
                   <option value="Artificial Intelligence">
                     Artificial Intelligence
                   </option>
@@ -112,52 +120,66 @@ const EditorPage = () => {
                 </select>
               </div>
             </div>
-            <ReactQuill
-              theme="snow"
-              value={value}
-              onChange={setValue}
-              placeholder="Write Your Blog here...."
-              modules={{
-                toolbar: [
-                  [{ header: "1" }, { header: "2" }, { font: [] }],
-                  [{ list: "ordered" }, { list: "bullet" }],
-                  ["bold", "italic", "underline"],
-                  ["link", "image", "video"],
-                ],
-              }}
-            />
-            <div>
+
+            {/* editior */}
+            <div className="mt-8">
+              <ReactQuill
+              
+                theme="snow"
+                value={value}
+                onChange={setValue}
+                placeholder="Write Your Blog here...."
+                modules={{
+                  toolbar: [
+                    [{ header: "1" }, { header: "2" }, { font: [] }],
+                    [{ list: "ordered" }, { list: "bullet" }],
+                    ["bold", "italic", "underline"],
+                    ["link", "image", "video"],
+                  ],
+                }}
+                />
+            </div>
+
+            {/* inputs for blog */}
+            <div  className="flex justify-between items-center mt-4">
+              {/* author Name */}
               <div>
-                <label htmlFor="authorName"> Author Name :- </label>
+                <label htmlFor="authorName" className=" text-xl font-semibold"> Author Name :- </label>
                 <input
                 value={authorName}
                   onChange={(e) => setAuthorName(e.target.value)}
                   type="text"
                   id="title"
                   placeholder="jone Dow"
+                  className=" border-b outline-none rounded-md p-1 text-xl font-semibold border-black"
                 />
               </div>
+
+              {/*  Thumbnail*/}
               <div>
-                <label htmlFor="authorImg"> Blog Title :- </label>
+                <label htmlFor="authorImg"  className=" text-xl font-semibold"> Blog Thumbnail :- </label>
                 <input
                   type="file"
                   name=""
                   id="authorImg"
                   onChange={convertImgUrl}
+                  className="  outline-none rounded-md p-1 font-semibold border-black"
                 />
               </div>
             </div>
           </div>
-          <p className=" text-right py-4 flex justify-between ">
+
+          {/* buttons for back to home  */}
+          <p className=" text-right mt-4 py-4 flex justify-between ">
             <Link to={"/"}>
               {" "}
-              <button className=" border p-1 rounded  bg-[#46BCAF] font-semibold text-white">
+              <button className=" border py-1 px-2 rounded  bg-[#46BCAF] font-semibold text-white">
                 {" "}
                 BACK TO MAIN PAGE
               </button>
             </Link>
             <button
-              className=" border p-1 rounded  bg-[#46BCAF] font-semibold text-white"
+              className=" border py-1 px-2 rounded  bg-[#46BCAF] font-semibold text-white"
               onClick={()=>handleAdd()}
             >
               {" "}
