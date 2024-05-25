@@ -8,7 +8,7 @@ const Header = () => {
 
     <div className=' shadow-xl' >
         <ContentWrapper>
-            <div className=' flex justify-between px-4 py-4  border-2  '>
+            <div className=' flex justify-between px-4 py-4    '>
                <Link to={'/'}>
                <div className=' p-2 flex items-center'> 
                    <img src={Logo} alt="" /><span className=' inline-block text-2xl font-bold ml-[2px]'>Blog</span>

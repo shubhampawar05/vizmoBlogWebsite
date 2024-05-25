@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 
 const DetailsPage = () => {
 
-  const localData = JSON.parse(localStorage.getItem("localData")) || [];
+  const localData = JSON.parse(localStorage.getItem("localData"));
   console.log("form details page", localData);
 
   const { uuid } = useParams();
@@ -21,12 +21,12 @@ const DetailsPage = () => {
       <Header/>
       <ContentWrapper>
 
-        <div className='mt-12 max-w-4xl mx-auto pb-12 '>
-          <h1 className=' text-3xl font-bold mb-4 '>{filteredData[0].title}</h1>
-          <div className=' text-center mx-auto mb-4'>
-          <img src={filteredData[0].imgUrl} alt="" width={"500px"}/>
+        <div className='mt-12 max-w-4xl mx-auto pb-12 h-full '>
+          <h1 className=' text-3xl font-bold mb-8 '>{filteredData[0].title}</h1>
+          <div className=' text-center mx-auto mb-4 h-full'>
+          <img src={filteredData[0].imgUrl} alt="" className=' h-[450px] w-full'/>
           </div>
-          <div dangerouslySetInnerHTML={{__html: filteredData[0].value}} />
+          <div className=' py-8' dangerouslySetInnerHTML={{__html: filteredData[0].value}} />
         </div>
         
       </ContentWrapper>

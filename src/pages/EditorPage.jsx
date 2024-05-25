@@ -62,6 +62,7 @@ const EditorPage = () => {
     setImgBanner("");
     setAuthorName("");
   };
+
   // console.log(post);
 
   // useEffect(() => {
@@ -71,15 +72,15 @@ const EditorPage = () => {
   //   }
   // }, []);
 
-  useEffect(() => {
-    localStorage.setItem("localData", JSON.stringify(post));
-  }, [post]);
+  // useEffect(() => {
+  //   localStorage.setItem("localData", JSON.stringify(post));
+  // }, [post]);
 
   return (
-    <div>
+    <div className=" bg-slate-100">
       <Header />
       <ContentWrapper>
-        <div className=" max-w-3xl mx-auto min-h-[50vh] mt-12 relative">
+        <div className=" max-w-3xl mx-auto min-h-[50vh] mt-24 relative border-2 border-black p-4 rounded bg-white">
           <div>
             {/* inputs for blog */}
             <div className=" flex justify-between items-center my-4">

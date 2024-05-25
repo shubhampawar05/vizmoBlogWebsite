@@ -9,14 +9,7 @@ import EditorPage from './pages/EditorPage'
 import DetailsPage from './pages/DetailsPage';
 
 function App() {
-  const [allData , setAllData]=useState([])
-
-  useEffect(()=>{
-    const data = JSON.stringify(allData) || [];
-    localStorage.setItem('localData', data)
-   
-  },[])
-
+ 
   return (
     <>
      <BrowserRouter>

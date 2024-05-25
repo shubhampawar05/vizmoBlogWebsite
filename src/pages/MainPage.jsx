@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 // import Data from './../assets/SampleData.json'
 
 const MainPage = () => {
-  const localData = JSON.parse(localStorage.getItem("localData")) || [];
+  const localData = JSON.parse(localStorage.getItem("localData"));
   console.log("form main page", localData);
 
   return (
