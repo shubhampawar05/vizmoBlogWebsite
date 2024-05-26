@@ -37,6 +37,7 @@ const EditorPage = () => {
       const url = URL.createObjectURL(file);
       setImgBanner(url);
       
+      
     }
   };
 
