@@ -8,14 +8,14 @@ const Header = () => {
 
     <div className=' shadow-xl' >
         <ContentWrapper>
-            <div className=' flex justify-between px-4 py-4    '>
+            <div className=' flex justify-between sm:px-4 sm:py-4 p-2    '>
                <Link to={'/'}>
-               <div className=' p-2 flex items-center'> 
-                   <img src={Logo} alt="" /><span className=' inline-block text-2xl font-bold ml-[2px]'>Blog</span>
+               <div className='sm:p-2 flex items-center sm:w-full w-24' > 
+                   <img src={Logo} alt=""  /><span className=' inline-block sm:text-2xl text-xl font-bold ml-[2px]'>Blog</span>
                 </div>
                </Link>
                 <Link to={'/AddPost'}>
-                <div className=' p-2 bg-[#46BCAF] text-white font-semibold rounded-md'>
+                <div className=' sm:p-2 p-1 bg-[#46BCAF] text-white font-semibold rounded-md'>
                     <button className='  text-white font-semibold '>
                         Create Blog
                     </button>

@@ -7,15 +7,15 @@ import { Link } from "react-router-dom";
 // import Data from './../assets/SampleData.json'
 
 const MainPage = () => {
-  const localData = JSON.parse(localStorage.getItem("localData"));
+  const localData = JSON.parse(localStorage.getItem("localData")) || [];
   console.log("form main page", localData);
 
   return (
     <div className=" ">
       <Header />
       <ContentWrapper>
-        <div className="flex justify-center mt-12 ">
-          <p className="text-4xl font-semibold text-gray-800 text-center max-w-5xl leading-10">
+        <div className="flex justify-center sm:mt-12 mt-4 ">
+          <p className="sm:text-4xl text-2xl font-semibold text-gray-800 text-center max-w-5xl leading-10">
             Explore,{" "}
             <span className="text-green-600 font-semibold">Engage</span>, and{" "}
             <span className="text-teal-700 font-semibold text-3xl">
@@ -36,8 +36,8 @@ const MainPage = () => {
             !
           </p>
         </div>
-        <p className="ml-12 my-8 text-3xl font-bold "> Latest Blog's </p>
-        <div className=" grid grid-cols-4 gap-3 place-items-center px-28 py-4 ">
+        <p className="sm:ml-12 sm:my-8 ml-2 my-4 text-3xl font-bold relative "> Latest Blog's  <hr className="  absolute w-[140px] border-2 border-[#46bcaf]"/>  </p>
+        <div className=" grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-3 grid-cols-1  place-items-center sm:px-16 md:px-8 xl:px-24 py-4 ">
           {localData.length > 0
             ? localData.map((item, idx) => <SingleCard card={item} key={idx} />)
             : null}

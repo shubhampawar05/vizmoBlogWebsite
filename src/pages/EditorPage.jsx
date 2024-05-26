@@ -52,9 +52,11 @@ const EditorPage = () => {
       authorName,
       date:formatDate(new Date()),
     };
-    const updatedPosts = [...post, newData];
-    setPost(updatedPosts);
-    localStorage.setItem("localData", JSON.stringify(updatedPosts));
+    setPost((prevPosts) => {
+      const updatedPosts = [...prevPosts, newData];
+      localStorage.setItem("localData", JSON.stringify(updatedPosts));
+      return updatedPosts;
+    });
 
     setValue('');
     setTitle("");
@@ -63,27 +65,26 @@ const EditorPage = () => {
     setAuthorName("");
   };
 
-  // console.log(post);
+  useEffect(() => {
+    const savedPosts = localStorage.getItem("localData");
+    if (savedPosts) {
+      setPost(JSON.parse(savedPosts));
+    }
+  }, []);
 
-  // useEffect(() => {
-  //   const savedPosts = localStorage.getItem("localData");
-  //   if (savedPosts) {
-  //     setPost(JSON.parse(savedPosts));
-  //   }
-  // }, []);
-
-  // useEffect(() => {
-  //   localStorage.setItem("localData", JSON.stringify(post));
-  // }, [post]);
-
+  useEffect(() => {
+    if (post.length > 0) {
+      localStorage.setItem("localData", JSON.stringify(post));
+    }
+  }, [post]);
   return (
-    <div className=" bg-slate-100">
+    <div >
       <Header />
       <ContentWrapper>
-        <div className=" max-w-3xl mx-auto min-h-[50vh] mt-24 relative border-2 border-black p-4 rounded bg-white">
+        <div className=" md:max-w-4xl sm:max-w-3xl max-w-xs mx-auto  min-h-[50vh] sm:mt-24 mt-8 relative border-2 border-black sm:p-6  p-4 mb-24 rounded bg-white">
           <div>
             {/* inputs for blog */}
-            <div className=" flex justify-between items-center my-4">
+            <div className=" flex flex-col sm:flex-row gap-4 justify-between items-center my-4">
               {/* Title of your blog */}
               <div className="">
                 <label htmlFor="title" className=" text-xl font-semibold"> Blog Title :- </label>
@@ -142,7 +143,7 @@ const EditorPage = () => {
             </div>
 
             {/* inputs for blog */}
-            <div  className="flex justify-between items-center mt-4">
+            <div  className=" flex flex-col sm:flex-row gap-4 justify-between items-center my-4">
               {/* author Name */}
               <div>
                 <label htmlFor="authorName" className=" text-xl font-semibold"> Author Name :- </label>
@@ -164,7 +165,8 @@ const EditorPage = () => {
                   name=""
                   id="authorImg"
                   onChange={convertImgUrl}
-                  className="  outline-none rounded-md p-1 font-semibold border-black"
+                  className="  outline-none rounded-md p-1 font-semibold border-black -px-4"
+                  placeholder=""
                 />
               </div>
             </div>
