@@ -22,6 +22,14 @@ const EditorPage = () => {
     date: new Date(),
   });
 
+  const [errors, setErrors] = useState({
+    title: "",
+    category: "",
+    authorName: "",
+    imgUrl: "",
+    value: "",
+  });
+
   useEffect(() => {
     if (location.state && location.state.post) {
       setPost(location.state.post);
@@ -40,59 +48,83 @@ const EditorPage = () => {
 
   const convertImgUrl = (e) => {
     const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
+    const data = new FormData();
+    data.append("file", file);
+    data.append("upload_preset", "shubhamVizmp");
+    data.append("cloud_name", "dx45qjfww");
+
+    fetch('https://api.cloudinary.com/v1_1/dx45qjfww/image/upload', {
+      method: "post",
+      body: data
+    })
+      .then((res) => res.json())
+      .then((result) => {
         setPost((prevPost) => ({
           ...prevPost,
-          imgUrl: reader.result,
+          imgUrl: result.url
         }));
-      };
-      reader.readAsDataURL(file);
-    } else {
-      alert("Please upload a valid image file.");
-    }
+      })
+      .catch((error) => {
+        console.error("Error uploading image: ", error);
+      });
+  };
+
+  const validateFields = () => {
+    const newErrors = {
+      title: post.title ? "" : "Title is required",
+      category: post.category ? "" : "Category is required",
+      authorName: post.authorName ? "" : "Author Name is required",
+      imgUrl: post.imgUrl ? "" : "Image is required",
+      value: post.value ? "" : "Content is required",
+    };
+    setErrors(newErrors);
+
+    return !Object.values(newErrors).some((error) => error !== "");
   };
 
   const handleAdd = () => {
-    const newData = {
-      ...post,
-      id: uuidv4(),
-      date: formatDate(new Date()),
-    };
-    addPost(newData);
+    if (validateFields()) {
+      const newData = {
+        ...post,
+        id: uuidv4(),
+        date: formatDate(new Date()),
+      };
+      addPost(newData);
 
-    setPost({
-      id: uuidv4(),
-      value: "",
-      title: "",
-      category: "",
-      imgUrl: "",
-      authorName: "",
-      date: new Date(),
-    });
+      setPost({
+        id: uuidv4(),
+        value: "",
+        title: "",
+        category: "",
+        imgUrl: "",
+        authorName: "",
+        date: new Date(),
+      });
 
-    navigate("/");
+      navigate("/");
+    }
   };
 
   const handleEdit = () => {
-    const updatedPost = {
-      ...post,
-      date: formatDate(new Date()),
-    };
-    editPost(updatedPost);
+    if (validateFields()) {
+      const updatedPost = {
+        ...post,
+        date: formatDate(new Date()),
+      };
+      editPost(updatedPost);
 
-    setPost({
-      id: uuidv4(),
-      value: "",
-      title: "",
-      category: "",
-      imgUrl: "",
-      authorName: "",
-      date: new Date(),
-    });
+      setPost({
+        id: uuidv4(),
+        value: "",
+        title: "",
+        category: "",
+        imgUrl: "",
+        authorName: "",
+        date: new Date(),
+      });
 
-    navigate("/");
+      navigate("/");
+    }
   };
 
   return (
@@ -118,6 +150,9 @@ const EditorPage = () => {
                 placeholder="Blog Title"
                 className="border-b outline-none rounded-md p-2 text-lg font-medium border-black w-full"
               />
+              {errors.title && (
+                <span className="text-red-500">{errors.title}</span>
+              )}
               <div className="mt-4">
                 <ReactQuill
                   theme="snow"
@@ -135,13 +170,13 @@ const EditorPage = () => {
                     ],
                   }}
                 />
+                {errors.value && (
+                  <span className="text-red-500">{errors.value}</span>
+                )}
               </div>
             </div>
             <div className="md:w-2/5">
-              <label
-                htmlFor="category"
-                className="block text-lg font-semibold"
-              >
+              <label htmlFor="category" className="block text-lg font-semibold">
                 Category:
               </label>
               <select
@@ -165,6 +200,9 @@ const EditorPage = () => {
                 <option value="Cybersecurity">Cybersecurity</option>
                 <option value="Renewable Energy">Renewable Energy</option>
               </select>
+              {errors.category && (
+                <span className="text-red-500">{errors.category}</span>
+              )}
               <label
                 htmlFor="authorName"
                 className="block mt-4 text-lg font-semibold"
@@ -184,6 +222,9 @@ const EditorPage = () => {
                 placeholder="Author Name"
                 className="border-b outline-none rounded-md p-2 text-lg font-medium border-black w-full"
               />
+              {errors.authorName && (
+                <span className="text-red-500">{errors.authorName}</span>
+              )}
               <label
                 htmlFor="authorImg"
                 className="block mt-4 text-lg font-semibold"
@@ -197,6 +238,9 @@ const EditorPage = () => {
                 className="outline-none rounded-md p-2 font-medium border-black w-full"
                 accept="image/*"
               />
+              {errors.imgUrl && (
+                <span className="text-red-500">{errors.imgUrl}</span>
+              )}
             </div>
           </div>
           <div className="flex justify-end mt-6">
