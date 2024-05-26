@@ -12,6 +12,7 @@ const EditorPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
+  console.log( "form loctaion page",location,location.state);
   const [post, setPost] = useState({
     id: uuidv4(),
     value: "",
@@ -203,7 +204,24 @@ const EditorPage = () => {
               {errors.category && (
                 <span className="text-red-500">{errors.category}</span>
               )}
+             
               <label
+                htmlFor="authorImg"
+                className="block mt-4 text-lg font-semibold"
+              >
+                Blog Thumbnail:
+              </label>
+              <input
+                type="file"
+                id="authorImg"
+                onChange={convertImgUrl}
+                className="outline-none rounded-md p-2 font-medium border-black w-full"
+                accept="image/*"
+              />
+              {errors.imgUrl && (
+                <span className="text-red-500">{errors.imgUrl}</span>
+              )}
+               <label
                 htmlFor="authorName"
                 className="block mt-4 text-lg font-semibold"
               >
@@ -224,22 +242,6 @@ const EditorPage = () => {
               />
               {errors.authorName && (
                 <span className="text-red-500">{errors.authorName}</span>
-              )}
-              <label
-                htmlFor="authorImg"
-                className="block mt-4 text-lg font-semibold"
-              >
-                Blog Thumbnail:
-              </label>
-              <input
-                type="file"
-                id="authorImg"
-                onChange={convertImgUrl}
-                className="outline-none rounded-md p-2 font-medium border-black w-full"
-                accept="image/*"
-              />
-              {errors.imgUrl && (
-                <span className="text-red-500">{errors.imgUrl}</span>
               )}
             </div>
           </div>

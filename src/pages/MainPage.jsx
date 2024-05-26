@@ -17,13 +17,18 @@ const MainPage = () => {
         <div className="flex justify-center sm:mt-12 mt-4 ">
           <PunchLine/>
         </div>
+
+        {/* Latest Blog */}
         <p className="sm:ml-12 sm:my-8 ml-2 my-4 text-3xl font-bold relative "> Latest Blog's  <hr className="  absolute w-[140px] border-2 border-[#46bcaf]"/>  </p>
 
         {/* single single Blog cards */}
         <div className=" grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-3 grid-cols-1  place-items-center sm:px-16 md:px-8 xl:px-24 py-4 ">
           {posts.length > 0
-            ? posts.map((item, idx) => <SingleCard card={item} key={idx} onDelete={deletePost} />)
-            : (
+            && posts.map((item, idx) => <SingleCard card={item} key={idx} onDelete={deletePost} />)
+           }
+        </div>
+        {/* if kuch bhi data nahi ho tab */}
+        {posts.length ===0 && (
               <div className="flex flex-col items-center justify-center">
                 <p className="text-center text-2xl font-semibold min-h-40 flex flex-col items-center gap-4 justify-center">
                   Write Your First Blog...
@@ -35,7 +40,6 @@ const MainPage = () => {
                 </p>
               </div>
             )}
-        </div>
       </ContentWrapper>
     </div>
   );

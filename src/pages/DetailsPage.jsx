@@ -15,7 +15,6 @@ const DetailsPage = () => {
     <div >
       <Header />
       <ContentWrapper>
-        
         <div className="sm:mt-12 mt-4 sm:max-w-4xl max-w-xs mx-auto sm:pb-12 h-full">
           <h1 className="sm:text-3xl text-xl px-1 font-bold mb-8">
             {blog.title}
