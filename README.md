@@ -1,8 +1,17 @@
-# React + Vite
+# VizmoBlog
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+VizmoBlog is a simple blogging application built with React and React Router. Users can create, view, and explore blog posts. The application leverages local storage to save and retrieve blog posts.
 
-Currently, two official plugins are available:
+## Usage
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Main Page
+
+Lists all blog posts. If no blog posts are available, prompts the user to create the first blog post.
+
+### AddPost Page
+
+A form to create a new blog post.
+
+### Details Page
+
+Displays the details of a specific blog post.

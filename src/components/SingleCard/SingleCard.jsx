@@ -8,22 +8,15 @@ const SingleCard = ({card}) => {
   return (
     <div >
         <Link to={`Details/${id}`}>
-        <div className=' flex flex-col gap-2 border border-[#e7e7e7] w-[250px] h-[320px] p-2 rounded-md '>
+        <div className=' flex flex-col gap-2 border border-[#e7e7e7] w-[250px] h-[300px] p-2 rounded-md '>
             <div className=' w-full h-[150px]'>
                 <img src={imgUrl} alt="" className=' w-full h-full object-cover object-center rounded-md ' />
             </div>
-            <div className='w-full h-[170px]'>
+            <div className='w-full'>
                 <span className='text-[#6267ee] bg-[#f6f8ff] text-[12px] inline-block px-2 rounded-md font-semibold '>{category}</span>
-                <h1 className=' my-2 font-bold text-[18px] w-full h-[80px] leading-6 '>{title}</h1>
-                <div className=' flex justify-between w-full pl-2 pr-6 items-center '>
-                    <div className='  flex gap-2  items-center '>
-                        <div className='w-5 h-5'>
-                            {/* <img src={authorImage} alt=""  className=' w-full h-full rounded-full '/>  */}
-                        </div>
-                        <div>
-                            <span className=' text-[12px] text-slate-400 font-medium'>{authorName}</span>
-                        </div>
-                    </div>
+                <h1 className=' my-2 font-bold text-[18px] h-[65px] w-full leading-6 '>{title.slice(0,70)}</h1>
+                <div className=' flex justify-between w-full pl-2 pr-6 items-center '> 
+                    <span className=' text-[12px] text-slate-400 font-medium'>{authorName.slice(0,25)}</span>   
                     <div className=' text-[12px] text-slate-400 font-medium'>{date}</div>
                 </div>
             </div>

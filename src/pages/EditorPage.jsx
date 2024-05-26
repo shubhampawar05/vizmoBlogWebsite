@@ -36,8 +36,8 @@ const EditorPage = () => {
     if (file) {
       const url = URL.createObjectURL(file);
       setImgBanner(url);
-      
-      
+    }else {
+      alert('Please upload a valid image file.');
     }
   };
 
