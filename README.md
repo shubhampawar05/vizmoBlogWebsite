@@ -19,4 +19,28 @@ This project is a blogging application built with React. It features a rich text
 - **FormData and Fetch API**: Used for handling file uploads to Cloudinary.
 - **React Router**: Manages the application's routing.
 
+## live Demo
+- check out my project Demo [click Here](https://vizmo-blog-website.vercel.app/)
+
+## Images
+
+# Home Page
+![Home img](./src/assets/emptyHome.png)
+
+# Editor Page
+![editor img](./src/assets/emptyeditor.png)
+
+# Blogs Page
+![blogs img](./src/assets/blogs.png)
+
+# Edit Blog Page
+![Edit Blog img](./src/assets/editor.png)
+
+# update
+![Update img](./src/assets/update.png)
+
+# Delete
+![Delete img](./src/assets/delete.png)
+
+
 
